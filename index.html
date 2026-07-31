@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jayadeva S K — Data Analyst / AI & ML Engineer</title>
+<meta name="description" content="Portfolio of Jayadeva S K — Data Analytics, Machine Learning & AI projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1622;
+    --panel:#101F30;
+    --panel-2:#132538;
+    --line: rgba(237,239,243,0.09);
+    --line-strong: rgba(237,239,243,0.18);
+    --text:#EDEFF3;
+    --text-dim:#8695AC;
+    --cyan:#3ED6C0;
+    --amber:#F2B84B;
+    --coral:#F2704B;
+    --radius: 4px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--cyan); color:var(--ink); }
+  a{color:inherit;}
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  /* subtle grid background */
+  .grid-bg{
+    position:fixed; inset:0; z-index:-1;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 42px 42px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+
+  /* nav */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,22,34,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1080px; margin:0 auto;
+  }
+  .brand{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em; }
+  .brand .dot{ color:var(--cyan); }
+  nav ul{ display:flex; gap:28px; list-style:none; }
+  nav a{ text-decoration:none; color:var(--text-dim); font-size:0.9rem; font-family:'IBM Plex Mono', monospace; transition:color .2s; }
+  nav a:hover{ color:var(--cyan); }
+  .nav-cta{
+    border:1px solid var(--line-strong); padding:8px 16px; border-radius:var(--radius);
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; text-decoration:none;
+    transition: border-color .2s, color .2s;
+  }
+  .nav-cta:hover{ border-color:var(--cyan); color:var(--cyan); }
+  .nav-toggle{ display:none; background:none; border:none; color:var(--text); font-size:1.4rem; cursor:pointer; }
+
+  /* hero */
+  .hero{ padding:88px 0 64px; position:relative; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.08em;
+    color:var(--cyan); text-transform:uppercase; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:''; width:7px; height:7px; background:var(--cyan); border-radius:50%; box-shadow:0 0 8px var(--cyan); }
+  h1.hero-title{
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height:1.12; letter-spacing:-0.01em;
+    max-width: 780px;
+  }
+  h1.hero-title .accent{ color:var(--cyan); }
+  .hero-sub{
+    margin-top:20px; max-width:560px; color:var(--text-dim); font-size:1.05rem;
+  }
+  .hero-actions{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:0.88rem;
+    padding:12px 22px; border-radius:var(--radius); text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{ background:var(--cyan); color:var(--ink); font-weight:600; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(62,214,192,0.25); }
+  .btn-ghost{ border:1px solid var(--line-strong); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--text-dim); transform:translateY(-2px); }
+
+  /* signature: live readout panel */
+  .readout{
+    margin-top:56px; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--panel); overflow:hidden;
+  }
+  .readout-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 18px; border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--text-dim);
+  }
+  .readout-dots{ display:flex; gap:6px; }
+  .readout-dots span{ width:8px; height:8px; border-radius:50%; background:var(--line-strong); }
+  .readout-body{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .metric{ padding:22px 18px; border-right:1px solid var(--line); }
+  .metric:last-child{ border-right:none; }
+  .metric .num{ font-family:'Space Grotesk', sans-serif; font-size:1.9rem; font-weight:700; color:var(--text); }
+  .metric .num .unit{ font-size:1rem; color:var(--cyan); }
+  .metric .label{ margin-top:4px; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.04em; }
+  .bars{ display:flex; align-items:flex-end; gap:3px; height:22px; margin-top:10px; }
+  .bars i{ flex:1; background:var(--cyan); opacity:0.35; border-radius:1px; animation: rise 2.6s ease-in-out infinite; }
+  .bars i:nth-child(1){ height:40%; animation-delay:0s; }
+  .bars i:nth-child(2){ height:70%; animation-delay:.15s; }
+  .bars i:nth-child(3){ height:50%; animation-delay:.3s; }
+  .bars i:nth-child(4){ height:90%; animation-delay:.45s; }
+  .bars i:nth-child(5){ height:60%; animation-delay:.6s; }
+  .bars i:nth-child(6){ height:35%; animation-delay:.75s; }
+  .bars i:nth-child(7){ height:75%; animation-delay:.9s; }
+  .bars i:nth-child(8){ height:55%; animation-delay:1.05s; }
+  @keyframes rise{ 0%,100%{ opacity:.35; } 50%{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){ .bars i{ animation:none; opacity:.7; } }
+
+  /* section shell */
+  section{ padding:76px 0; border-top:1px solid var(--line); }
+  .section-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:40px; }
+  .section-num{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:0.85rem; }
+  .section-title{ font-family:'Space Grotesk', sans-serif; font-size:1.7rem; font-weight:600; }
+  .section-sub{ color:var(--text-dim); margin-top:-26px; margin-bottom:36px; max-width:560px; font-size:0.98rem; }
+
+  /* skills */
+  .skill-groups{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px; }
+  .skill-card{ border:1px solid var(--line); border-radius:var(--radius); padding:20px; background:var(--panel); }
+  .skill-card h3{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--amber); margin-bottom:14px; }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tags span{
+    font-family:'IBM Plex Mono', monospace; font-size:0.8rem; padding:5px 10px;
+    border:1px solid var(--line-strong); border-radius:3px; color:var(--text-dim);
+  }
+
+  /* projects */
+  .project{
+    display:grid; grid-template-columns: 100px 1fr; gap:24px;
+    padding:32px 0; border-bottom:1px solid var(--line);
+  }
+  .project:last-child{ border-bottom:none; }
+  .project-index{ font-family:'IBM Plex Mono', monospace; color:var(--text-dim); font-size:0.9rem; }
+  .project-tag{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+    color:var(--ink); background:var(--cyan); padding:2px 8px; border-radius:2px;
+    text-transform:uppercase; letter-spacing:0.04em; margin-bottom:10px;
+  }
+  .project-tag.sample{ background:var(--amber); }
+  .project h3{ font-family:'Space Grotesk', sans-serif; font-size:1.3rem; margin-bottom:10px; }
+  .project p{ color:var(--text-dim); max-width:640px; margin-bottom:14px; }
+  .project-meta{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .project-meta span{ font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--cyan); border:1px solid rgba(62,214,192,0.3); padding:3px 9px; border-radius:2px; }
+  .project-links{ display:flex; gap:18px; }
+  .project-links a{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; text-decoration:none; color:var(--text); border-bottom:1px solid var(--line-strong); padding-bottom:2px; transition:border-color .2s, color .2s; }
+  .project-links a:hover{ color:var(--cyan); border-color:var(--cyan); }
+
+  /* experience timeline */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line-strong); }
+  .tl-item{ position:relative; margin-bottom:36px; }
+  .tl-item::before{ content:''; position:absolute; left:-28px; top:5px; width:11px; height:11px; border-radius:50%; background:var(--ink); border:2px solid var(--cyan); }
+  .tl-item .role{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.1rem; }
+  .tl-item .org{ color:var(--cyan); font-family:'IBM Plex Mono', monospace; font-size:0.85rem; margin:2px 0 10px; }
+  .tl-item ul{ color:var(--text-dim); padding-left:18px; }
+  .tl-item li{ margin-bottom:6px; }
+
+  /* education */
+  .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .edu-card{ border:1px solid var(--line); border-radius:var(--radius); padding:22px; background:var(--panel); }
+  .edu-card .deg{ font-family:'Space Grotesk', sans-serif; font-weight:600; }
+  .edu-card .school{ color:var(--text-dim); font-size:0.92rem; margin-top:4px; }
+  .edu-card .year{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--amber); margin-top:10px; }
+
+  /* contact / footer */
+  .contact{ text-align:left; }
+  .contact-title{ font-family:'Space Grotesk', sans-serif; font-size:2.2rem; font-weight:700; max-width:600px; }
+  .contact-title .accent{ color:var(--cyan); }
+  .contact-links{ display:flex; gap:16px; margin-top:32px; flex-wrap:wrap; }
+  footer{ border-top:1px solid var(--line); padding:28px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-inner p{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--text-dim); }
+
+  @media (max-width:760px){
+    nav ul{ display:none; }
+    .nav-toggle{ display:block; }
+    .readout-body{ grid-template-columns:repeat(2,1fr); }
+    .metric:nth-child(2){ border-right:none; }
+    .metric{ border-bottom:1px solid var(--line); }
+    .project{ grid-template-columns:1fr; }
+    .edu-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">jayadeva<span class="dot">.</span>sk</div>
+    <nav><ul>
+      <li><a href="#work">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="eyebrow mono">Open to Data Analyst / ML roles</div>
+    <h1 class="hero-title">Turning raw data into <span class="accent">decisions</span> — analysis, models, dashboards.</h1>
+    <p class="hero-sub">I'm Jayadeva S K, an AI & ML engineer and data analyst based in Shivamogga, Karnataka. I build classification models, deploy them as APIs, and turn messy datasets into dashboards people actually act on.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#work">View projects ↓</a>
+      <a class="btn btn-ghost" href="resume.pdf">Download resume</a>
+    </div>
+
+    <div class="readout">
+      <div class="readout-head">
+        <span>~/portfolio/summary.log</span>
+        <div class="readout-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="readout-body">
+        <div class="metric">
+          <div class="num">3<span class="unit">+</span></div>
+          <div class="label">Analytics &amp; ML projects</div>
+          <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="metric">
+          <div class="num">1</div>
+          <div class="label">Live ML API in production intern work</div>
+        </div>
+        <div class="metric">
+          <div class="num">6<span class="unit">+</span></div>
+          <div class="label">Core tools — Python, SQL, Power BI</div>
+        </div>
+        <div class="metric">
+          <div class="num">2026</div>
+          <div class="label">MCA, AI &amp; ML — S-VYASA University</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">01</span>
+      <h2 class="section-title">Selected projects</h2>
+    </div>
+    <p class="section-sub">A mix of production ML work from my internship and independent analytics case studies covering the SQL → Python → BI-dashboard pipeline.</p>
+
+    <div class="project">
+      <div class="project-index mono">01</div>
+      <div>
+        <span class="project-tag">Production</span>
+        <h3>Failure Root Cause Classification System</h3>
+        <p>An AI-powered system built during my internship at Testneo.ai that automatically classifies the root cause of reported failures, cutting down manual triage time. Trained the classification model, then packaged it behind a FastAPI service for downstream consumption.</p>
+        <div class="project-meta">
+          <span>Python</span><span>Scikit-learn</span><span>FastAPI</span><span>Model deployment</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/YOUR-USERNAME/failure-root-cause-classifier">Repository →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-index mono">02</div>
+      <div>
+        <span class="project-tag sample">Case study</span>
+        <h3>Retail Sales Performance Dashboard</h3>
+        <p>End-to-end analytics case study: cleaned and modeled multi-region retail transaction data in SQL, then built an interactive Power BI dashboard tracking revenue, YoY growth, and top/bottom-performing product categories for a fictional retail chain.</p>
+        <div class="project-meta">
+          <span>SQL</span><span>Power BI</span><span>DAX</span><span>Data modeling</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/YOUR-USERNAME/retail-sales-dashboard">Repository →</a>
+          <a href="#">Live dashboard →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-index mono">03</div>
+      <div>
+        <span class="project-tag sample">Case study</span>
+        <h3>Customer Churn Prediction &amp; Analysis</h3>
+        <p>Exploratory data analysis and churn-prediction model on a telecom customer dataset — identifying the strongest churn drivers, then translating model outputs into plain-language retention recommendations for a non-technical audience.</p>
+        <div class="project-meta">
+          <span>Python</span><span>Pandas</span><span>Scikit-learn</span><span>Matplotlib</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/YOUR-USERNAME/customer-churn-analysis">Repository →</a>
+          <a href="#">Notebook →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">02</span>
+      <h2 class="section-title">Toolkit</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h3>Languages &amp; Analysis</h3>
+        <div class="skill-tags"><span>Python</span><span>SQL</span><span>Pandas</span><span>NumPy</span></div>
+      </div>
+      <div class="skill-card">
+        <h3>Visualization &amp; BI</h3>
+        <div class="skill-tags"><span>Power BI</span><span>Tableau</span><span>Excel</span><span>Matplotlib</span></div>
+      </div>
+      <div class="skill-card">
+        <h3>Machine Learning</h3>
+        <div class="skill-tags"><span>Scikit-learn</span><span>Classification</span><span>Model deployment</span></div>
+      </div>
+      <div class="skill-card">
+        <h3>Engineering</h3>
+        <div class="skill-tags"><span>FastAPI</span><span>Git / GitHub</span><span>REST APIs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">03</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="role">Machine Learning Engineer Intern</div>
+        <div class="org">Testneo.ai (Jnanix NGPT Pvt. Ltd.)</div>
+        <ul>
+          <li>Developed and evaluated ML models for a failure root-cause classification pipeline.</li>
+          <li>Deployed trained models as REST endpoints using FastAPI for integration into internal tools.</li>
+          <li>Worked across the full loop — data prep, model iteration, and production packaging.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">04</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="deg">Master of Computer Applications — AI &amp; ML</div>
+        <div class="school">S-VYASA University</div>
+        <div class="year mono">Expected 2026</div>
+      </div>
+      <div class="edu-card">
+        <div class="deg">Bachelor of Computer Applications</div>
+        <div class="school">Kuvempu University</div>
+        <div class="year mono">Completed</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap contact">
+    <div class="section-head">
+      <span class="section-num mono">05</span>
+      <h2 class="section-title">Contact</h2>
+    </div>
+    <h3 class="contact-title">Looking for a Data Analyst / AI &amp; ML role? Let's <span class="accent">talk.</span></h3>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:YOUR-EMAIL@example.com">Email me</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/YOUR-LINKEDIN">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/YOUR-USERNAME">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>© 2026 Jayadeva S K — Shivamogga, Karnataka</p>
+    <p>Built for GitHub Pages</p>
+  </div>
+</footer>
+
+</body>
+</html>
