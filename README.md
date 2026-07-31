@@ -85,37 +85,47 @@ Passionate about Software Engineering, Backend Development, Data Analytics, and 
 
 ## 📂 Featured Projects
 
+## 📂 Featured Projects
+
 ### 🚦 Real-Time Traffic Prediction
+**Python • FastAPI • React • Machine Learning**
 
-Python • FastAPI • React • Machine Learning
+- Predicts traffic congestion using machine learning and real-time traffic data.
+- REST API backend built with FastAPI.
+- Interactive frontend developed with React.
 
-Predicts traffic congestion using machine learning and real-time datasets.
+🔗 Repository: https://github.com/JayadevaSK/your-repository-name
 
 ---
 
 ### 🤖 Failure Root Cause Classification
+**Python • FastAPI • XGBoost**
 
-Python • FastAPI • XGBoost
+- Machine learning system to classify software test failures.
+- Built REST APIs for real-time predictions.
+- Automated failure analysis.
 
-Classifies software test failures into predefined root-cause categories.
+🔗 Repository: https://github.com/JayadevaSK/your-repository-name
 
 ---
 
 ### 🏥 Hospital Management System
+**PHP • MySQL • HTML • CSS • JavaScript**
 
-PHP • MySQL • HTML • CSS • JavaScript
+- Full-stack hospital management application.
+- Patient, doctor, appointment, and authentication modules.
 
-Complete hospital management application.
-
----
-
-### 📊 Sales Dashboard
-
-Power BI • SQL
-
-Interactive dashboard for sales insights.
+🔗 Repository: https://github.com/JayadevaSK/your-repository-name
 
 ---
+
+### 📊 Sales Performance Dashboard
+**Power BI • SQL • Excel**
+
+- Interactive dashboard with KPIs and business insights.
+- SQL-based data extraction and Power BI visualizations.
+
+🔗 Repository: https://github.com/JayadevaSK/your-repository-name
 
 ## 📈 GitHub Stats
 
